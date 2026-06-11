@@ -1,0 +1,122 @@
+---
+title: Color
+description: "B2B brand blues, inherited noon yellow, and the rules that split marketing expression from product UI."
+status: done
+version: "1.0.0"
+updated: 2026-06-10
+figma: https://www.figma.com/design/uenqKjJqjrxXWzJkDMCpyh/B2B---Consumer-App
+---
+
+Blue is trust and interaction. Yellow is the noon slash, one highlight at a time.
+Marketing may use hero blue and the signature gradient; product UI stays neutral.
+
+## Palette
+
+<ColorSwatchGrid />
+
+## How to spend color
+
+1. **Neutral by default.** Most of every screen is background, surface and ink.
+2. **Blue means interactive.** If it's blue, you can act on it. If you can't act on it, it isn't blue.
+3. **Yellow means look here.** One yellow moment per view, at most.
+4. **Semantic colors mean outcomes.** Green, amber and red are reserved for status, never decoration.
+
+### Marketing vs product
+
+| Token | Marketing | Product UI |
+| --- | --- | --- |
+| `--brand` | Logo, key CTAs on landing | Links, primary buttons |
+| `--brand-bg` | Hero sections, covers | Rare, never inside components |
+| `--brand-gradient` | Banners, presentation covers | Never inside logos or text |
+| `--accent` | One campaign moment | One badge or marker per view |
+
+<Callout tone="info" title="Token-first">
+  Never hardcode a hex value in product code. Every color above is a CSS custom
+  property and a Tailwind utility.
+</Callout>
+
+## Contrast
+
+Approved pairings pass WCAG AA in both themes. Check any combination live,
+and try accent as text to see why yellow is never used for type.
+
+<ContrastChecker />
+
+## Usage rules
+
+### Interactive color
+
+Blue is the only interactive hue, links, primary buttons, focus rings and
+selected states all use `--brand`.
+
+<DoDont>
+  <Do>
+    Use <code>--brand</code> for every primary action, link and selected state.
+  </Do>
+  <Dont>
+    Introduce purple, teal or any second hue for "special" actions, it dilutes
+    the meaning of blue.
+  </Dont>
+</DoDont>
+
+### The yellow accent
+
+Yellow is the slash in the lettermark, a highlight, never a button, surface or
+status color.
+
+<DoDont>
+  <Do>
+    Use yellow for one promotional or "new" moment per view, with dark ink on
+    top.
+  </Do>
+  <Dont>
+    Use yellow for warnings, that's <code>--warning</code> amber, or as a
+    large surface fill.
+  </Dont>
+</DoDont>
+
+### Semantic color
+
+Status colors always travel with a non-color signal (icon, label or position),
+so meaning survives for color-blind users.
+
+| Token | Means | Typical use |
+| --- | --- | --- |
+| `--success` | Completed, healthy, positive | Payout sent, store active, +12% delta |
+| `--warning` | Degraded, needs attention | Pending review, low stock, retrying |
+| `--danger` | Failed, destructive, blocked | Payment failed, delete actions, suspension |
+
+## Engineering reference
+
+Tokens are CSS custom properties defined in `globals.css` and mapped to
+Tailwind utilities via the `@theme` directive.
+
+```css
+:root {
+  --brand: #0928ff;
+  --brand-bg: #0036bd;
+  --brand-gradient: linear-gradient(165deg, #0928ff 0%, #0036bd 55%, #061dbf 100%);
+  --accent: #f3e008;
+}
+
+.dark {
+  --brand: #4d6bff;
+}
+```
+
+```tsx
+// Tailwind utilities map 1:1 to tokens
+<button className="bg-brand text-brand-ink hover:bg-brand-strong">
+  Create order
+</button>
+
+// Arbitrary access when needed
+<div className="border-(--border) text-(--ink-muted)" />
+```
+
+## Related
+
+<RelatedResources links={[
+  { title: "Typography", href: "/foundations/typography", description: "The Figtree-based type system" },
+  { title: "Brand identity", href: "/foundations/brand-identity", description: "Where the palette comes from" },
+]} />

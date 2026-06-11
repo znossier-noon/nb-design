@@ -1,0 +1,19 @@
+# Default owners for review requests.
+# Replace placeholders with your GitHub org teams or @usernames.
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Engineering — app, components, tokens, build, Tina/Vercel config
+*                                   @your-org/engineering
+
+# Design — all documentation content
+/src/content/                        @your-org/design-leads
+
+# Navigation and content registry (design + eng)
+/src/lib/navigation.ts               @your-org/design-leads @your-org/engineering
+
+# Collaboration docs
+/CONTRIBUTING.md                     @your-org/design-leads @your-org/engineering
+/DEPLOY.md                           @your-org/engineering
+
+# Tina CMS schema
+/tina/                               @your-org/engineering

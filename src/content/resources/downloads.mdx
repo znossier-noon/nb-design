@@ -1,0 +1,53 @@
+---
+title: Downloads
+description: Fonts, color palettes, presentation kits and everything else that installs locally.
+status: "work-in-progress"
+version: "1.0.0"
+updated: 2026-05-30
+---
+
+## Fonts
+
+| Family | License | Formats |
+| --- | --- | --- |
+| Figtree | Open (OFL) | Variable TTF, static weights 400/500/600, woff2 |
+| JetBrains Mono | Open (OFL) | Variable TTF, weights 400/500, woff2 |
+
+Product surfaces load fonts via `next/font`, these downloads are for design
+tools and documents. Install the static weights in Figma to match production
+rendering.
+
+## Color palettes
+
+The [token palette](/foundations/color) packaged for every tool:
+
+- **Figma**, included as variables in NB Foundations (preferred)
+- **Swatch files**, `.ase` (Adobe), `.clr` (macOS), `.gpl` (GIMP/Inkscape)
+- **JSON**, the raw token set from `@noon-business/tokens`, light and dark
+
+## Presentation kit
+
+- Slide templates (16:9) in the brand fonts and palette
+- Document covers and report templates
+- Social media templates for launch announcements
+
+## Tokens for engineers
+
+```bash
+npm install @noon-business/tokens
+```
+
+Ships CSS custom properties, a Tailwind preset and the raw JSON. Setup guide:
+[documentation](/resources/documentation).
+
+<Callout tone="info" title="Versioning">
+  Downloads match platform v1.0.0. Re-sync when tokens change.
+</Callout>
+
+## Related
+
+<RelatedResources links={[
+  { title: "Brand assets", href: "/resources/brand-assets", description: "Logos, icons and imagery" },
+  { title: "Typography", href: "/foundations/typography", description: "How the fonts are used" },
+  { title: "Color", href: "/foundations/color", description: "The palette being downloaded" },
+]} />

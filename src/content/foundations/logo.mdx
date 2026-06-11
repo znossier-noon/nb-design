@@ -1,0 +1,58 @@
+---
+title: Logo
+description: "The noon business lettermark and wordmark: primary and compact lockups, variant rules, and copy-ready SVG."
+status: done
+version: "1.0.0"
+updated: 2026-06-10
+figma: https://www.figma.com/design/iAq72DG3Jpn0Bry2pyD9sg/Seller-Lab
+---
+
+Two lockups: **primary** (lettermark + wordmark) and **compact** (lettermark only).
+Pick the variant that keeps the mark legible on your background.
+
+## Variant selector
+
+Move the background, tune hue and lightness, or paste a hex. The recommended
+variant updates live, same pattern as [Cash App's logo tool](https://design.cash.app/logo).
+
+<LogoShowcase />
+
+## Choosing a lockup
+
+| Scenario | Lockup |
+| --- | --- |
+| Website header, landing hero, Seller Lab | Primary |
+| App icon, favicon, social avatar | Compact |
+| Arabic marketing (RTL) | Arabic primary or compact per locale kit |
+
+## Incorrect usage
+
+Browse common mistakes. Arrow keys work when the gallery is focused.
+
+<LogoMisuseGallery />
+
+## Rules
+
+- Tile color is always `#0928FF`, it does not adapt to theme
+- Preferred expression: full-color logo on brand or hero blue
+- Monochrome only when color reproduction is limited
+- Clear space equals the height of the "b" on all sides
+
+## Engineering reference
+
+```tsx
+import { LogoMark, Wordmark } from "@/components/brand/logo";
+
+<LogoMark size={26} />
+<Wordmark />
+```
+
+Static exports: [brand assets](/resources/brand-assets).
+
+## Related
+
+<RelatedResources links={[
+  { title: "Brand identity", href: "/foundations/brand-identity", description: "B2B architecture and placements" },
+  { title: "Color", href: "/foundations/color", description: "The blues and yellow the marks use" },
+  { title: "Brand assets", href: "/resources/brand-assets", description: "Download logo packages" },
+]} />

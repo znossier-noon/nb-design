@@ -1,0 +1,67 @@
+---
+title: Motion
+description: Motion explains. Durations, easings and choreography rules that make interfaces feel responsive without ever getting in the way.
+status: done
+version: "1.0.0"
+updated: 2026-05-14
+---
+
+Motion has one job: explaining change. It is never entertainment, and it never
+costs the user time.
+
+## See it move
+
+<MotionPlayground />
+
+Interface motion is fast and functional (120–320ms); editorial motion on
+marketing surfaces can breathe (600ms entrances).
+
+## Tokens
+
+<TokenTable scale="motion" />
+
+<DoDont>
+  <Do>
+    Animate panels from their trigger's direction. Motion explains origin.
+  </Do>
+  <Dont>
+    Bounce, pulse or wiggle for attention. Use hierarchy and accent instead.
+  </Dont>
+</DoDont>
+
+## Engineering reference
+
+Editorial reveals use the shared primitives, which handle viewport detection
+and reduced motion:
+
+```tsx
+import { FadeIn, Stagger, StaggerItem } from "@/components/motion/reveal";
+
+<FadeIn delay={0.1}>
+  <SectionHeader />
+</FadeIn>
+
+<Stagger>
+  {cards.map((card) => (
+    <StaggerItem key={card.id}><Card {...card} /></StaggerItem>
+  ))}
+</Stagger>
+```
+
+Interface transitions use CSS with the standard easing tokens:
+
+```css
+.panel {
+  transition: transform 320ms var(--ease-out-expo), opacity 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; }
+}
+```
+
+## Related
+
+<RelatedResources links={[
+  { title: "Design principles", href: "/foundations/principles", description: "Clarity over cleverness, applied to time" },
+]} />
