@@ -2,12 +2,11 @@
 
 import * as React from "react";
 import { useCopy } from "@/lib/use-copy";
+import { NO_SQUIRCLE_CLASS, SQUIRCLE_CLASS } from "@/lib/squircle";
 import { cn } from "@/lib/utils";
 
 /**
- * Pick a spacing, radius and shadow token and watch one card morph.
- * Values mirror lib/tokens.ts; classes are the Tailwind utilities teams
- * actually ship.
+ * Pick spacing and radius tokens and watch one card morph.
  */
 const SPACING = [
   { token: "space-2", px: 8, className: "p-2" },
@@ -26,13 +25,6 @@ const RADIUS = [
   { token: "radius-full", value: "9999px", className: "rounded-full", pill: true },
 ];
 
-const SHADOW = [
-  { token: "shadow-xs", className: "shadow-xs" },
-  { token: "shadow-sm", className: "shadow-sm" },
-  { token: "shadow-md", className: "shadow-md" },
-  { token: "shadow-lg", className: "shadow-lg" },
-];
-
 function ChipRow<T extends { token: string }>({
   label,
   options,
@@ -46,9 +38,7 @@ function ChipRow<T extends { token: string }>({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-[11px] font-semibold tracking-[0.08em] text-ink-faint uppercase">
-        {label}
-      </span>
+      <span className="text-overline">{label}</span>
       <div className="flex flex-wrap gap-1">
         {options.map((option) => (
           <button
@@ -74,27 +64,27 @@ function ChipRow<T extends { token: string }>({
 export function TokenLab() {
   const [spacing, setSpacing] = React.useState(SPACING[2]);
   const [radius, setRadius] = React.useState(RADIUS[2]);
-  const [shadow, setShadow] = React.useState(SHADOW[1]);
   const { copied, copy } = useCopy();
 
-  const classes = `${radius.className} ${spacing.className} ${shadow.className}`;
+  const classes = `${radius.className} ${spacing.className}`;
 
   return (
     <div className="my-6 overflow-hidden rounded-md border border-border">
       <div className="flex flex-col gap-4 border-b border-border bg-surface/40 p-4 sm:flex-row sm:gap-8">
         <ChipRow label="Spacing" options={SPACING} active={spacing} onSelect={setSpacing} />
         <ChipRow label="Radius" options={RADIUS} active={radius} onSelect={setRadius} />
-        <ChipRow label="Shadow" options={SHADOW} active={shadow} onSelect={setShadow} />
       </div>
 
-      <div className="flex min-h-56 items-center justify-center bg-background bg-[radial-gradient(var(--border)_1px,transparent_1px)] bg-size-[20px_20px] p-8">
+      <div className="flex min-h-56 items-center justify-center bg-specimen p-8">
         {radius.pill ? (
           <div
-            className="flex items-center gap-3 border border-border bg-surface-raised transition-all duration-300 ease-out"
+            className={cn(
+              "flex items-center gap-3 border border-border bg-surface-raised transition-all duration-300 ease-out",
+              NO_SQUIRCLE_CLASS,
+            )}
             style={{
               padding: `${spacing.px / 2}px ${spacing.px}px`,
               borderRadius: "var(--radius-full)",
-              boxShadow: `var(--${shadow.token})`,
             }}
           >
             <span className="font-mono text-sm font-semibold text-ink">AED 12,400</span>
@@ -102,11 +92,13 @@ export function TokenLab() {
           </div>
         ) : (
           <div
-            className="w-full max-w-xs border border-border bg-surface-raised transition-all duration-300 ease-out"
+            className={cn(
+              "w-full max-w-xs border border-border bg-surface-raised transition-all duration-300 ease-out",
+              SQUIRCLE_CLASS,
+            )}
             style={{
               padding: spacing.px,
               borderRadius: radius.value,
-              boxShadow: `var(--${shadow.token})`,
             }}
           >
             <div
@@ -115,14 +107,19 @@ export function TokenLab() {
             >
               <span className="text-sm font-semibold text-ink">Weekly payout</span>
               <span
-                className="bg-success-soft px-2 py-0.5 text-[11px] font-semibold text-success"
+                className={cn(
+                  "bg-success-soft px-2 py-0.5 text-[11px] font-semibold text-success",
+                  NO_SQUIRCLE_CLASS,
+                )}
                 style={{ borderRadius: "var(--radius-full)" }}
               >
                 Paid
               </span>
             </div>
             <p className="font-mono text-xl text-ink">AED 12,400.00</p>
-            <p className="mt-1 text-xs text-ink-muted">Every card is these three decisions.</p>
+            <p className="mt-1 text-xs text-ink-muted">
+              Every card is spacing and radius. No elevation shadows in this system.
+            </p>
           </div>
         )}
       </div>

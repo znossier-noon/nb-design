@@ -1,9 +1,9 @@
 ---
 title: Documentation
-description: "Engineering setup: packages, theming and tokens."
+description: "Engineering setup: packages and tokens."
 status: "work-in-progress"
-version: "1.0.0"
-updated: 2026-05-30
+version: "1.0"
+updated: 2026-06-11
 ---
 
 ## Packages
@@ -24,14 +24,5 @@ npm install @noon-business/tokens
 @import "@noon-business/tokens/css";
 ```
 
-## Theming
-
-Tokens switch via `.dark` on the root. Use `next-themes` with the class strategy.
+Light mode only for now. Tokens are a single palette in `globals.css`.
 See [color](/foundations/color).
-
-## Related
-
-<RelatedResources links={[
-  { title: "Color", href: "/foundations/color", description: "Token architecture" },
-  { title: "Downloads", href: "/resources/downloads", description: "Font and palette files" },
-]} />

@@ -26,7 +26,7 @@ EOF
 )"
   echo "Created initial commit."
 else
-  echo "Working tree clean — nothing to commit."
+  echo "Working tree clean: nothing to commit."
 fi
 
 cat <<'EOF'

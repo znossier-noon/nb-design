@@ -114,7 +114,7 @@ export function CommandPalette({ index }: { index: SearchItem[] }) {
       />
       <Command
         shouldFilter={false}
-        className="fixed inset-x-4 top-[12vh] mx-auto max-w-xl overflow-hidden rounded-lg border border-border bg-surface-raised shadow-lg animate-fade-up [animation-duration:200ms]"
+        className="fixed inset-x-4 top-[12vh] mx-auto max-w-xl overflow-hidden rounded-lg border border-border bg-surface-raised animate-fade-up [animation-duration:200ms]"
       >
         <div className="flex items-center gap-3 border-b border-border px-4">
           <svg
@@ -170,7 +170,7 @@ export function CommandPalette({ index }: { index: SearchItem[] }) {
                     )}
                   </div>
                   {item.status && (
-                    <StatusBadge status={item.status} compact className="shrink-0 text-[10px]" />
+                    <StatusBadge status={item.status} className="shrink-0 text-[10px]" />
                   )}
                 </Command.Item>
               ))}

@@ -12,6 +12,7 @@ import {
   type LogoVariant,
 } from "@/lib/brand";
 import { useCopy } from "@/lib/use-copy";
+import { LOGO_TILE_SQUIRCLE } from "@/lib/squircle";
 import { cn } from "@/lib/utils";
 
 const B_PATH =
@@ -21,7 +22,7 @@ const SLASH_PATH = "M13.6 30.6 22 27l-5 9.8a10.6 10.6 0 0 1-3.4-6.2Z";
 function lettermarkSvg(variant: LogoVariant) {
   const glyphs =
     variant === "full"
-      ? `<rect width="48" height="48" rx="10" fill="${BRAND_BLUE}"/><path d="${B_PATH}" fill="#fff"/><path d="${SLASH_PATH}" fill="${ACCENT_YELLOW}"/>`
+      ? `<path d="${LOGO_TILE_SQUIRCLE}" fill="${BRAND_BLUE}"/><path d="${B_PATH}" fill="#fff"/><path d="${SLASH_PATH}" fill="${ACCENT_YELLOW}"/>`
       : `<path d="${B_PATH}" fill="${variant === "white" ? "#fff" : BRAND_BLACK}"/><path d="${SLASH_PATH}" fill="${variant === "white" ? "#fff" : BRAND_BLACK}"/>`;
   return `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">${glyphs}</svg>`;
 }

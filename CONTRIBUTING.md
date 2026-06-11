@@ -18,7 +18,7 @@ This site is a static Next.js documentation platform. Content lives in MDX files
 3. Sign in with Tina Cloud, pick **Documentation pages**, edit, and save.
 4. In production, saves go to GitHub on your branch; open a PR to merge to `main`.
 
-Tina edits **frontmatter** (title, description, status, Figma link, etc.) and **page body** prose. Interactive blocks already on a page — for example `<ColorSwatchGrid />`, `<PrinciplesExplorer />` — stay in the MDX file. Edit the markdown around them; ask engineering if you need a new block type.
+Tina edits **frontmatter** (title, description, status, Figma link, etc.) and **page body** prose. Interactive blocks already on a page, for example `<ColorSwatchGrid />` or `<PrinciplesExplorer />`, stay in the MDX file. Edit the markdown around them; ask engineering if you need a new block type.
 
 ### Frontmatter reference
 
@@ -29,7 +29,7 @@ Every page in `src/content/` starts with YAML frontmatter:
 title: Page title
 description: One-line summary for search and meta tags.
 status: shipped          # shipped | in-progress | planned
-version: "1.0.0"           # optional
+version: "1.0"           # optional
 updated: 2026-06-10        # optional, ISO date
 figma: https://figma.com/...  # optional
 source: https://github.com/... # optional
@@ -42,12 +42,12 @@ source: https://github.com/... # optional
    - `/foundations/color` → `src/content/foundations/color.mdx`
    - `/resources` → `src/content/resources/index.mdx`
 2. Edit the file on a branch.
-3. Open a pull request. Vercel posts a **preview URL** on the PR — share that for review.
+3. Open a pull request. Vercel posts a **preview URL** on the PR. Share that for review.
 4. Merge to `main` when approved; production updates automatically.
 
 ## Adding a new page
 
-Two steps — both are required:
+Two steps. Both are required:
 
 ### 1. Create the MDX file
 
@@ -75,9 +75,9 @@ Run `npm run build` locally before opening a PR if you changed nav or added page
 
 ## Branch naming
 
-- `content/update-color-copy` — MDX-only changes
-- `feat/hero-animation` — UI or feature work
-- `fix/contrast-table` — bug fixes
+- `content/update-color-copy`: MDX-only changes
+- `feat/hero-animation`: UI or feature work
+- `fix/contrast-table`: bug fixes
 
 Keep content PRs small and focused when possible.
 

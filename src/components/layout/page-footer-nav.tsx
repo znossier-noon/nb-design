@@ -17,7 +17,7 @@ export function PageFooterNav({
       {prev ? (
         <Link
           href={prev.href}
-          className="group flex flex-col gap-1 rounded-md border border-border p-4 transition-all hover:border-border-strong hover:shadow-xs"
+          className="group flex flex-col gap-1 rounded-md border border-border p-4 transition-colors hover:border-border-strong"
         >
           <span className="text-xs text-ink-faint">← Previous</span>
           <span className="text-sm font-medium text-ink transition-colors group-hover:text-brand">
@@ -30,7 +30,7 @@ export function PageFooterNav({
       {next && (
         <Link
           href={next.href}
-          className="group flex flex-col items-end gap-1 rounded-md border border-border p-4 text-right transition-all hover:border-border-strong hover:shadow-xs"
+          className="group flex flex-col items-end gap-1 rounded-md border border-border p-4 text-right transition-colors hover:border-border-strong"
         >
           <span className="text-xs text-ink-faint">Next →</span>
           <span className="text-sm font-medium text-ink transition-colors group-hover:text-brand">

@@ -13,7 +13,7 @@ export function RelatedResources({ links }: { links: RelatedLink[] }) {
         <Link
           key={link.href}
           href={link.href}
-          className="group flex flex-col gap-1 rounded-md border border-border p-4 no-underline transition-all hover:border-border-strong hover:shadow-xs"
+          className="group flex flex-col gap-1 rounded-md border border-border p-4 no-underline transition-colors hover:border-border-strong"
         >
           <span className="flex items-center justify-between gap-2 text-sm font-semibold text-ink transition-colors group-hover:text-brand">
             {link.title}

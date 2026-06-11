@@ -74,7 +74,7 @@ export function MotionPlayground() {
         <button
           type="button"
           onClick={replay}
-          className="flex h-7 cursor-pointer items-center gap-1.5 rounded-[6px] bg-background px-2.5 text-xs font-medium text-ink shadow-xs transition-colors hover:bg-brand-soft hover:text-brand"
+          className="flex h-7 cursor-pointer items-center gap-1.5 rounded-[6px] border border-border bg-background px-2.5 text-xs font-medium text-ink transition-colors hover:bg-brand-soft hover:text-brand"
         >
           <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden>
             <path

@@ -25,7 +25,7 @@ export function Sidebar({
           <div className="flex flex-wrap items-center gap-2">
             <p className="text-sm font-semibold text-ink">{section.title}</p>
             {sectionStatus && (
-              <StatusBadge status={sectionStatus} compact className="text-[10px]" />
+              <StatusBadge status={sectionStatus} className="text-[10px]" />
             )}
           </div>
           <p className="mt-1 text-[12px] leading-relaxed text-ink-faint">

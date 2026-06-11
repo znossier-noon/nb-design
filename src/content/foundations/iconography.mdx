@@ -1,8 +1,8 @@
 ---
 title: Iconography
 description: A single stroke-based icon style (1.5px lines on a 16px grid) that stays legible from dense tables to marketing pages.
-status: done
-version: "1.0.0"
+status: "work-in-progress"
+version: "1.0"
 updated: 2026-04-30
 ---
 
@@ -18,8 +18,8 @@ optical rules.
 
 - **Stroke-based**: 1.5px stroke at 16px, scaling proportionally
 - **Grid**: drawn on a 16×16 grid with a 1px safety margin
-- **Corners**: rounded caps and joins, matching Figtree's geometry
-- **Color**: `currentColor` always, icons inherit text color and theme automatically
+- **Corners**: rounded caps and joins, matching NoonTree's geometry
+- **Color**: `currentColor` always, icons inherit text color automatically
 - **Fills** are reserved for selected/active states of the same glyph
 
 ## Usage rules
@@ -52,10 +52,3 @@ Icons ship as React components rendering inline SVG with `currentColor`:
 
 Decorative icons next to visible labels are always `aria-hidden` so screen
 readers hear the label once.
-
-## Related
-
-<RelatedResources links={[
-  { title: "Logo", href: "/foundations/logo", description: "The one mark that isn't an icon" },
-  { title: "Brand assets", href: "/resources/brand-assets", description: "Download the icon library" },
-]} />

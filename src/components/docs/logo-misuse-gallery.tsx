@@ -9,6 +9,7 @@ import {
   BRAND_BLUE,
   BRAND_GRADIENT,
 } from "@/lib/brand";
+import { LOGO_TILE_SQUIRCLE } from "@/lib/squircle";
 import { cn } from "@/lib/utils";
 
 const B_PATH =
@@ -48,10 +49,8 @@ function MisuseMark({
         filter: shadow ? "drop-shadow(0 6px 12px rgba(0,0,0,0.35))" : undefined,
       }}
     >
-      <rect
-        width="48"
-        height="48"
-        rx="10"
+      <path
+        d={LOGO_TILE_SQUIRCLE}
         fill={tile}
         stroke={outline ? "#fff" : undefined}
         strokeWidth={outline ? 3 : undefined}
@@ -132,7 +131,7 @@ const MISUSES = [
             <stop offset="100%" stopColor="#F3E008" />
           </linearGradient>
         </defs>
-        <rect width="48" height="48" rx="10" fill="url(#misuse-grad)" />
+        <path d={LOGO_TILE_SQUIRCLE} fill="url(#misuse-grad)" />
         <path d={B_PATH} fill="#fff" />
         <path d={SLASH_PATH} fill={ACCENT_YELLOW} />
       </svg>
@@ -177,7 +176,7 @@ export function LogoMisuseGallery() {
             type="button"
             onClick={prev}
             aria-label="Previous misuse example"
-            className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-border bg-surface-raised text-ink-muted transition-colors hover:text-ink"
+            className="flex size-8 cursor-pointer items-center justify-center rounded-sm border border-border bg-surface-raised text-ink-muted transition-colors hover:text-ink"
           >
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
               <path d="M10 3 5 8l5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
@@ -190,7 +189,7 @@ export function LogoMisuseGallery() {
             type="button"
             onClick={next}
             aria-label="Next misuse example"
-            className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-border bg-surface-raised text-ink-muted transition-colors hover:text-ink"
+            className="flex size-8 cursor-pointer items-center justify-center rounded-sm border border-border bg-surface-raised text-ink-muted transition-colors hover:text-ink"
           >
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
               <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />

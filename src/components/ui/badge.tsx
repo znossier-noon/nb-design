@@ -17,26 +17,30 @@ const variantStyles: Record<BadgeVariant, string> = {
   warning: "bg-warning-soft text-warning border border-warning/20",
   danger: "bg-danger-soft text-danger border border-danger/20",
   outline: "border border-border-strong text-ink-secondary",
-  accent: "bg-accent text-accent-ink border border-accent",
+  accent: "bg-accent text-ink border border-accent",
 };
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;
   /** Renders a small status dot before the label. */
   dot?: boolean;
+  /** Noon Mono for doc-platform metadata (version, IDs). */
+  mono?: boolean;
 }
 
 export function Badge({
   className,
   variant = "neutral",
   dot,
+  mono,
   children,
   ...props
 }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium",
+        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-normal normal-case",
+        mono && "font-mono",
         variantStyles[variant],
         className,
       )}

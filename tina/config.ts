@@ -68,7 +68,7 @@ export default defineConfig({
             type: "string",
             name: "version",
             label: "Version",
-            description: 'Platform version, e.g. "1.0.0"',
+            description: 'Platform version, e.g. "1.0"',
           },
           {
             type: "datetime",

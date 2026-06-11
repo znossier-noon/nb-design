@@ -1,6 +1,6 @@
 # Noon Business Design
 
-The official design reference for Noon Business. **Foundations** (principles, tokens, brand) and **Resources** (Figma, assets, downloads), versioned at v1.0.0.
+The official design reference for Noon Business. **Foundations** (principles, tokens, brand) and **Resources** (Figma, assets, downloads), versioned at v1.0.
 
 ## Getting started
 
@@ -18,10 +18,10 @@ npm run lint    # eslint
 
 ## Deploy and collaborate
 
-- **[DEPLOY.md](./DEPLOY.md)** — GitHub, Vercel, and Tina Cloud setup checklist
-- **[CONTRIBUTING.md](./CONTRIBUTING.md)** — content editing (Tina + MDX), new pages, PR workflow
-- **Tina CMS** — `/admin` for visual content editing (design team)
-- **Preview URLs** — every PR gets a Vercel preview link for review before merge
+- **[DEPLOY.md](./DEPLOY.md)**: GitHub, Vercel, and Tina Cloud setup checklist
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)**: content editing (Tina + MDX), new pages, PR workflow
+- **Tina CMS**: `/admin` for visual content editing (design team)
+- **Preview URLs**: every PR gets a Vercel preview link for review before merge
 
 ## Tech stack
 
@@ -30,8 +30,6 @@ npm run lint    # eslint
 - **motion**, reduced-motion aware
 - **MDX** via `next-mdx-remote` + `gray-matter`
 - **cmdk**, ⌘K search over a build-time index
-- **next-themes**, light/dark (class strategy)
-
 ## Architecture
 
 ```
@@ -40,7 +38,7 @@ src/
     page.tsx                 Homepage: hero + foundations/resources index
     (docs)/[...slug]/        MDX docs (14 pages)
   components/
-    ui/                      Button, Badge, Kbd, ThemeToggle
+    ui/                      Button, Badge, Kbd
     layout/                  Header, Footer, Sidebar, TOC
     home/                    Hero, HeroCanvas, HomeSections
     docs/                    Interactive MDX components (swatches, logo tool, etc.)

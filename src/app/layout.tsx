@@ -1,21 +1,31 @@
 import type { Metadata } from "next";
-import { Figtree, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { Cairo, Figtree, JetBrains_Mono } from "next/font/google";
+import { BrandLoader } from "@/components/shell/brand-loader";
 import { CommandPalette } from "@/components/search/command-palette";
 import { buildSearchIndex } from "@/lib/search";
-import { buildPageStatusMap } from "@/lib/content";
 import "./globals.css";
 
-const figtree = Figtree({
-  variable: "--font-figtree",
+// NoonTree is a custom Figtree build. Figtree stands in until woff2 files land in
+// public/fonts/noontree/ and layout switches to next/font/local.
+const noontree = Figtree({
+  variable: "--font-noontree",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+// Noon Arabic is Cairo under the brand name. Cairo stands in via next/font/google
+// until woff2 files land in public/fonts/noon-arabic/ — then switch to localFont.
+const noonArabic = Cairo({
+  variable: "--font-noon-arabic",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+// Noon Mono is JetBrains Mono under the brand name. JetBrains_Mono stands in via
+// next/font/google until woff2 files land in public/fonts/noon-mono/ — then switch to localFont.
+const noonMono = JetBrains_Mono({
+  variable: "--font-noon-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -39,24 +49,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={`${figtree.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${noontree.variable} ${noonArabic.variable} ${noonMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <ThemeProvider>
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-sm focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-brand-ink"
-          >
-            Skip to content
-          </a>
-          <Header pageStatuses={buildPageStatusMap()} />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <CommandPalette index={searchIndex} />
-        </ThemeProvider>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-sm focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ink-inverse"
+        >
+          Skip to content
+        </a>
+        <BrandLoader />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <CommandPalette index={searchIndex} />
       </body>
     </html>
   );

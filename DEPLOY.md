@@ -10,7 +10,7 @@ Step-by-step guide to put **nb-design** on GitHub and Vercel, enable team previe
 
 ---
 
-## Phase 1 — GitHub
+## Phase 1: GitHub
 
 ### 1. Create the repository
 
@@ -49,7 +49,7 @@ Configure in **Settings → Branches → Add rule** for `main`. See [`.github/BR
 
 ---
 
-## Phase 2 — Vercel
+## Phase 2: Vercel
 
 ### 1. Import the repo
 
@@ -67,7 +67,7 @@ Add these in **Project → Settings → Environment Variables** for Production, 
 | Variable | Where to get it | Notes |
 | --- | --- | --- |
 | `NEXT_PUBLIC_TINA_CLIENT_ID` | [app.tina.io](https://app.tina.io) → your project | Public; embedded in admin build |
-| `TINA_TOKEN` | Tina Cloud project → tokens | **Secret** — server/build only |
+| `TINA_TOKEN` | Tina Cloud project → tokens | **Secret**: server/build only |
 
 Copy from [`.env.example`](./.env.example). You can deploy once without Tina vars; `/admin` will not authenticate until they are set.
 
@@ -84,7 +84,7 @@ Share preview links with the design team for review before merge.
 
 ---
 
-## Phase 3 — Tina Cloud
+## Phase 3: Tina Cloud
 
 Tina provides the `/admin` UI and commits content changes back to GitHub.
 
@@ -122,7 +122,7 @@ In Tina Cloud → **Project → Collaborators**, invite design team members. The
 
 ---
 
-## Phase 4 — Day-to-day workflow
+## Phase 4: Day-to-day workflow
 
 ```
 Design edits in Tina or GitHub  →  PR opened  →  Vercel preview URL
@@ -142,7 +142,7 @@ Design edits in Tina or GitHub  →  PR opened  →  Vercel preview URL
 | Build fails on Vercel | Check build logs; run `npm run build` locally. Ensure `TINA_TOKEN` is set for Production and Preview. |
 | `/admin` blank or auth error | Verify `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN`; redeploy after adding env vars. |
 | Tina schema changes not picked up | Run `npm run tina:build`, commit `tina/tina-lock.json`, push, reconnect branch in Tina Cloud if needed. |
-| Preview shows old content | Hard refresh; Tina saves to the PR branch — confirm you are on the right preview URL. |
+| Preview shows old content | Hard refresh; Tina saves to the PR branch. Confirm you are on the right preview URL. |
 | `git` fails on macOS | Accept Xcode license: `sudo xcodebuild -license` |
 
 ---

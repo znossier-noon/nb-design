@@ -50,7 +50,6 @@ export const navigation: NavSection[] = [
         items: [
           { title: "Overview", href: "/resources" },
           { title: "Figma libraries", href: "/resources/figma-libraries" },
-          { title: "Templates", href: "/resources/templates" },
           { title: "Brand assets", href: "/resources/brand-assets" },
           { title: "Downloads", href: "/resources/downloads" },
           { title: "Documentation", href: "/resources/documentation" },

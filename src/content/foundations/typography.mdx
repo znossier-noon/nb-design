@@ -1,14 +1,14 @@
 ---
 title: Typography
-description: "A single-family type system built on Figtree: editorial at the top, workmanlike in the interface, consistent everywhere."
-status: done
-version: "1.0.0"
-updated: 2026-05-21
+description: "NoonTree for Latin, Noon Arabic for RTL: one scale each, shared utility names."
+status: "work-in-progress"
+version: "1.0"
+updated: 2026-06-11
 figma: https://www.figma.com/design/NWn3esVM9TYjso4TCakkGk/Branding
 ---
 
-One family, **Figtree**, everywhere. Hierarchy comes from size, weight and
-spacing, never from switching typefaces.
+Latin product copy uses **NoonTree**. Arabic uses **Noon Arabic**. Hierarchy
+comes from size and weight, never from mixing families on the same line.
 
 ## Try it
 
@@ -16,23 +16,52 @@ spacing, never from switching typefaces.
 
 ## Type scale
 
-Two registers: **editorial** (Display XL through Headline) is fluid via
-`clamp()`; **interface** (Title and below) uses fixed sizes for dense product UI.
+Two registers per script: **editorial** (Display XL through Headline) is fluid
+via `clamp()`; **interface** (Title and below) uses fixed sizes. Toggle EN
+and AR to compare metrics.
 
 <TypeScale />
 
 ## Typefaces
 
-| Family | Role | Weights |
-| --- | --- | --- |
-| Figtree | Everything: display, headings, UI, body | 400, 500, 600 |
-| JetBrains Mono | Code, tokens, tabular identifiers | 400, 500 |
+| Family | Script | Role | Weights | Glyphs |
+| --- | --- | --- | --- | --- |
+| NoonTree | Latin | Display, headings, UI, body | 400, 500, 600 | `dhm`, `sar` |
+| Noon Arabic | Arabic | Display, headings, UI, body | 400, 500, 600 | `dhm`, `sar` |
+| Noon Mono | Latin | Code, tokens, tabular IDs | 400, 500 | `dhm`, `sar` |
 
-<Callout tone="info" title="Loading">
-  Both families are self-hosted via <code>next/font</code> with
-  <code>display: swap</code> and Latin subsetting. Never load fonts from
-  third-party CDNs in product code.
-</Callout>
+**NoonTree** is Figtree repackaged for Noon: same metrics as the upstream family.
+**Noon Arabic** is Cairo under the brand name: the RTL companion with the same
+weight scale (400, 500, 600). **Noon Mono** is JetBrains Mono under the brand
+name: tabular figures for code and data. All three families ship the brand
+currency glyphs.
+
+All three load via `next/font` with `display: swap` (self-hosted by Next.js). Pin
+local woff2 files in `public/fonts/noontree/`, `public/fonts/noon-arabic/`, and
+`public/fonts/noon-mono/` when you need frozen builds. Never load fonts from
+third-party CDNs in product code.
+
+## Brand glyphs
+
+<BrandGlyphs />
+
+## Arabic rules
+
+- Set `lang="ar"` and `dir="rtl"` on the page or section root
+- Use `font-arabic` or rely on `:lang(ar)` — never NoonTree for Arabic copy
+- **No letter-spacing** on Arabic. Tracking sliders do not apply
+- Line heights run **looser** than Latin (see Arabic column in the type scale)
+- Overlines stay small semibold text; avoid forced ALL CAPS in Arabic
+- Mixed Latin + Arabic in one line: wrap each run in its own `lang` span
+
+<DoDont>
+  <Do>
+    Mirror layout for RTL: flip navigation, align tables and numerals logically.
+  </Do>
+  <Dont>
+    Apply Latin negative tracking to Arabic, or use NoonTree for Arabic sentences.
+  </Dont>
+</DoDont>
 
 ## Usage rules
 
@@ -52,16 +81,35 @@ blocks compete, demote one.
   </Dont>
 </DoDont>
 
+### Badges and overlines
+
+Two small-type registers. Do not mix them.
+
+| Register | Case | Tracking | Font | Use for |
+| --- | --- | --- | --- | --- |
+| **Overline** | ALL CAPS (Latin only) | `0.08em` (`text-overline`) | NoonTree semibold | Sidebar groups, TOC, section labels |
+| **Badge** | Sentence case | Normal | NoonTree / Noon Arabic semibold | Product tags: Paid, New, Active |
+| **Status** | Sentence case | Normal | Noon Mono semibold | Doc platform: WIP, Done, Planned |
+
+Never set badges or status labels in all caps. Color and the pill shape carry the emphasis.
+
 ### Line length and rhythm
 
-- Large text tracks tight (Display XL −3.5%), small text needs room (Caption +1%), baked into the scale, never overridden per-instance
-- Body text: 45–75 characters per line, line height 1.75 for prose, 1.5 for dense UI
-- Never justify text. Left-aligned, ragged-right, always
+- Latin large text tracks tight (Display XL −3.5%), small text needs room (Caption +1%)
+- Arabic: zero tracking everywhere; body line height 1.85, dense UI 1.6
+- Body text: 45–75 characters per line (Latin), ~50–70 characters (Arabic)
+- Never justify text
 
 ### Numbers and data
 
-Any column of numbers, order IDs, amounts, timestamps, is JetBrains Mono
-with tabular figures.
+Any column of numbers, order IDs, amounts, timestamps, is Noon Mono
+with tabular figures. Currency uses the brand glyphs (`dhm`, `sar`) via their
+Unicode codepoints in whichever family matches the surface:
+
+```tsx
+<span>{'\u20C3'} 1,234.50</span> {/* AED, glyph dhm */}
+<span>{'\u20C1'} 1,234.50</span> {/* SAR, glyph sar */}
+```
 
 <DoDont>
   <Do>
@@ -75,30 +123,26 @@ with tabular figures.
 
 ## Engineering reference
 
-The scale is defined as Tailwind theme tokens, so styles stay consistent and
-purgeable.
+Latin and Arabic share utility class names. Arabic metrics apply under
+`lang="ar"`, `dir="rtl"`, or the `type-arabic` class.
 
 ```css
-@theme inline {
-  --text-display-xl: clamp(3rem, 7.5vw, 5.5rem);
-  --text-display-xl--line-height: 1.02;
-  --text-display-xl--letter-spacing: -0.035em;
+body {
+  font-family: var(--font-noontree), ui-sans-serif, system-ui, sans-serif;
+}
 
-  --text-headline: clamp(1.75rem, 3.2vw, 2.5rem);
-  --text-title: 1.375rem;
+:lang(ar) {
+  font-family: var(--font-noon-arabic), sans-serif;
+  letter-spacing: 0;
 }
 ```
 
 ```tsx
+<html lang="ar" dir="rtl" className="type-arabic">
+  <h1 className="text-headline text-ink">نظام التصميم</h1>
+</html>
+
 <h1 className="text-headline text-ink">Page title</h1>
 <p className="text-body-lg text-ink-secondary">Lede paragraph…</p>
 <span className="font-mono text-[13px]">NB-20581</span>
 ```
-
-## Related
-
-<RelatedResources links={[
-  { title: "Color", href: "/foundations/color", description: "Ink steps that pair with each text style" },
-  { title: "Content guidelines", href: "/foundations/content-guidelines", description: "What to write in all this type" },
-  { title: "Brand identity", href: "/foundations/brand-identity", description: "Why Figtree is the brand voice" },
-]} />

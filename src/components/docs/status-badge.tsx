@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export const STATUS_LABEL: Record<DocStatus, string> = {
   done: "Done",
-  "work-in-progress": "Work in progress",
+  "work-in-progress": "WIP",
   planned: "Planned",
 };
 
@@ -28,20 +28,22 @@ export function StatusDot({ status }: { status: DocStatus }) {
   );
 }
 
+/** Doc-platform status: sentence case, mono, color + dot. */
 export function StatusBadge({
   status,
-  compact = false,
   className,
 }: {
   status: DocStatus;
-  compact?: boolean;
   className?: string;
 }) {
   return (
-    <Badge variant={STATUS_VARIANT[status]} dot className={className}>
-      {compact
-        ? STATUS_LABEL[status].replace("Work in progress", "WIP")
-        : STATUS_LABEL[status]}
+    <Badge
+      variant={STATUS_VARIANT[status]}
+      dot
+      mono
+      className={cn("font-semibold", className)}
+    >
+      {STATUS_LABEL[status]}
     </Badge>
   );
 }

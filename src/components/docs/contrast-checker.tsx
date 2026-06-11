@@ -26,7 +26,7 @@ const BACKGROUNDS = [
   "--surface-sunken",
   "--brand-soft",
   "--brand",
-  "--brand-bg",
+  "--brand-strong",
 ];
 
 function token(variable: string): ColorToken {
@@ -47,6 +47,33 @@ function luminance(hex: string): number {
 function contrast(a: string, b: string): number {
   const [lighter, darker] = [luminance(a), luminance(b)].sort((x, y) => y - x);
   return (lighter + 0.05) / (darker + 0.05);
+}
+
+function rgbToHex(rgb: string): string {
+  const match = rgb.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) return rgb.startsWith("#") ? rgb : "#000000";
+  const [, r, g, b] = match;
+  return `#${[r, g, b].map((channel) => Number(channel).toString(16).padStart(2, "0")).join("")}`;
+}
+
+/** Resolve a CSS variable to hex under :root or `.dark`. */
+function resolveTokenHex(variable: string, theme: "light" | "dark"): string {
+  if (typeof document === "undefined") {
+    return token(variable).hex;
+  }
+
+  const host = document.createElement("div");
+  host.style.cssText = "position:fixed;visibility:hidden;pointer-events:none";
+  if (theme === "dark") host.className = "dark";
+
+  const probe = document.createElement("div");
+  probe.style.backgroundColor = `var(${variable})`;
+  host.appendChild(probe);
+  document.body.appendChild(host);
+
+  const hex = rgbToHex(getComputedStyle(probe).backgroundColor);
+  document.body.removeChild(host);
+  return hex;
 }
 
 const CHECKS = [
@@ -91,8 +118,13 @@ export function ContrastChecker() {
   const [fg, setFg] = React.useState("--ink");
   const [bg, setBg] = React.useState("--background");
 
-  const fgHex = token(fg)[theme];
-  const bgHex = token(bg)[theme];
+  const [fgHex, setFgHex] = React.useState(() => token(fg).hex);
+  const [bgHex, setBgHex] = React.useState(() => token(bg).hex);
+
+  React.useEffect(() => {
+    setFgHex(resolveTokenHex(fg, theme));
+    setBgHex(resolveTokenHex(bg, theme));
+  }, [fg, bg, theme]);
   const ratio = contrast(fgHex, bgHex);
   const display = `${(Math.round(ratio * 100) / 100).toFixed(2)}:1`;
 

@@ -1,4 +1,5 @@
 import { ACCENT_YELLOW, BRAND_BLUE } from "@/lib/brand";
+import { LOGO_TILE_SQUIRCLE } from "@/lib/squircle";
 import { cn } from "@/lib/utils";
 
 /**
@@ -20,7 +21,7 @@ export function LogoMark({
       aria-hidden
       className={cn("shrink-0", className)}
     >
-      <rect width="48" height="48" rx="10" fill={BRAND_BLUE} />
+      <path d={LOGO_TILE_SQUIRCLE} fill={BRAND_BLUE} />
       <path
         d="M17 9v12.3a10.5 10.5 0 1 1-3.4 7.7V9h3.4Zm7.5 12.4a7.4 7.4 0 1 0 0 14.8 7.4 7.4 0 0 0 0-14.8Z"
         fill="#fff"

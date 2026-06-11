@@ -3,17 +3,20 @@
 import {
   radiusScale,
   spacingScale,
-  shadowScale,
   motionTokens,
   type ScaleToken,
 } from "@/lib/tokens";
 import { useCopy } from "@/lib/use-copy";
+import {
+  NO_SQUIRCLE_CLASS,
+  SQUIRCLE_CLASS,
+  squircleRadiusStyle,
+} from "@/lib/squircle";
 import { cn } from "@/lib/utils";
 
 const sources: Record<string, ScaleToken[]> = {
   radius: radiusScale,
   spacing: spacingScale,
-  shadow: shadowScale,
   motion: motionTokens,
 };
 
@@ -82,8 +85,13 @@ function TokenPreview({ scale, token }: { scale: string; token: ScaleToken }) {
         className={cn(
           "block border border-brand/40 bg-brand-soft",
           full ? "h-6 w-14" : "size-9",
+          full ? NO_SQUIRCLE_CLASS : SQUIRCLE_CLASS,
         )}
-        style={{ borderRadius: full ? "var(--radius-full)" : token.value }}
+        style={
+          full
+            ? { borderRadius: "var(--radius-full)" }
+            : squircleRadiusStyle(token.value)
+        }
       />
     );
   }
@@ -95,15 +103,6 @@ function TokenPreview({ scale, token }: { scale: string; token: ScaleToken }) {
           style={{ width: token.value }}
         />
       </span>
-    );
-  }
-  if (scale === "shadow") {
-    const shadowVar = `var(--${token.name})`;
-    return (
-      <span
-        className="block h-9 w-14 rounded-sm border border-border bg-surface-raised"
-        style={{ boxShadow: shadowVar }}
-      />
     );
   }
   return null;

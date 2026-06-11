@@ -34,7 +34,7 @@ export function TableOfContents({ headings }: { headings: TocHeading[] }) {
       aria-label="On this page"
       className="sticky top-[3.75rem] hidden h-[calc(100dvh-3.75rem)] w-56 shrink-0 overflow-y-auto py-8 pl-6 xl:block"
     >
-      <h2 className="text-[11px] font-semibold tracking-[0.08em] text-ink-faint uppercase">
+      <h2 className="text-overline">
         On this page
       </h2>
       <ul className="mt-3 flex flex-col gap-px border-l border-border">

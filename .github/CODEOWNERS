@@ -1,9 +1,9 @@
 # Default owners for review requests.
 
-# Engineering — app, components, tokens, build, Tina/Vercel config
+# Engineering: app, components, tokens, build, Tina/Vercel config
 *                                   @znossier-noon @ahnaguib171
 
-# Design — all documentation content
+# Design: all documentation content
 /src/content/                        @znossier-noon @ahnaguib171
 
 # Navigation and content registry

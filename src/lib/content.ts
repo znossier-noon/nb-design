@@ -11,7 +11,7 @@ export type DocFrontmatter = {
   title: string;
   description: string;
   status?: DocStatus;
-  /** Platform version this page ships in, e.g. "1.0.0". */
+  /** Platform version this page ships in, e.g. "1.0". */
   version?: string;
   updated?: string;
   figma?: string;

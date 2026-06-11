@@ -41,6 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# tina — lockfile is committed; local dev artifacts are not
+# tina: lockfile is committed; local dev artifacts are not
 tina/__generated__/
 public/admin/

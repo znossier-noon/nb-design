@@ -75,7 +75,7 @@ export function IconGallery() {
             type="button"
             onClick={() => copy(iconSvg(icon), icon.name)}
             aria-label={`Copy ${icon.name} icon SVG`}
-            className="group flex aspect-square cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-border bg-surface-raised text-ink transition-all duration-200 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-sm"
+            className="group flex aspect-square cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-border bg-surface-raised text-ink transition-colors duration-200 hover:border-border-strong"
           >
             <Glyph icon={icon} size={20} />
             <span

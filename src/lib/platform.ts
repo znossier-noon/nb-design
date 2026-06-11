@@ -1,6 +1,6 @@
 import { navigation } from "@/lib/navigation";
 
-export const PLATFORM_VERSION = "1.0.0";
+export const PLATFORM_VERSION = "1.0";
 export const PLATFORM_NAME = "Noon Business Design";
 export const PLATFORM_TAGLINE =
   "The official design reference for Noon Business.";

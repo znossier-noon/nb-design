@@ -66,7 +66,7 @@ export function HeroCanvas({ className }: { className?: string }) {
           delay={0.25}
           rotate={-6}
           label="Drag the noon business lettermark"
-          className="top-4 left-10 rounded-[22px] shadow-md"
+          className="top-4 left-10 rounded-[22px] "
         >
           <LogoMark size={104} className="rounded-[22px]" />
         </Tile>
@@ -76,9 +76,9 @@ export function HeroCanvas({ className }: { className?: string }) {
           delay={0.4}
           rotate={8}
           label="Drag the yellow accent chip"
-          className="top-10 right-7 h-12 w-22 -skew-x-6 rounded-[10px] bg-accent shadow-sm"
+          className="top-10 right-7 h-12 w-22 -skew-x-6 rounded-[10px] bg-accent "
         >
-          <span className="skew-x-6 font-mono text-[11px] font-semibold text-accent-ink">
+          <span className="skew-x-6 font-mono text-[11px] font-semibold text-ink">
             #F3E008
           </span>
         </Tile>
@@ -105,7 +105,7 @@ export function HeroCanvas({ className }: { className?: string }) {
           <button
             type="button"
             onClick={() => copy("#0928FF", "brand")}
-            className="flex h-24 w-24 cursor-pointer flex-col items-center justify-center gap-1 rounded-md bg-brand text-white shadow-md transition-transform active:scale-95"
+            className="flex h-24 w-24 cursor-pointer flex-col items-center justify-center gap-1 rounded-md bg-brand text-white  transition-transform active:scale-95"
           >
             <span className="font-mono text-[11px] font-semibold">
               {copied === "brand" ? "Copied!" : "#0928FF"}
@@ -118,7 +118,7 @@ export function HeroCanvas({ className }: { className?: string }) {
           delay={0.7}
           rotate={-8}
           label="Drag or flip the toggle"
-          className="bottom-24 left-16 rounded-full bg-surface-raised p-2.5 shadow-md ring-1 ring-border"
+          className="bottom-24 left-16 rounded-md bg-surface-raised p-2.5  ring-1 ring-border"
         >
           <button
             type="button"
@@ -133,7 +133,7 @@ export function HeroCanvas({ className }: { className?: string }) {
           >
             <span
               className={cn(
-                "absolute top-1 left-1 size-5 rounded-full bg-white shadow-sm transition-transform duration-200",
+                "absolute top-1 left-1 size-5 rounded-full bg-white  transition-transform duration-200",
                 toggled && "translate-x-5",
               )}
             />
