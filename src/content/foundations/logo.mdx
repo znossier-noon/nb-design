@@ -1,58 +1,147 @@
 ---
 title: Logo
-description: "The noon business lettermark and wordmark: primary and compact lockups, variant rules, and copy-ready SVG."
+description: "Primary and compact Noon Business logo usage, color variations and strict application rules."
 status: done
 version: "1.0.0"
-updated: 2026-06-10
+updated: 2026-06-11
 figma: https://www.figma.com/design/iAq72DG3Jpn0Bry2pyD9sg/Seller-Lab
 ---
 
-Two lockups: **primary** (lettermark + wordmark) and **compact** (lettermark only).
-Pick the variant that keeps the mark legible on your background.
+## Logo Overview
 
-## Variant selector
+The Noon Business logo is the primary visual identifier of the brand. It combines
+the trust and recognition of the noon wordmark with a dedicated Business identity
+designed for professional commerce.
 
-Move the background, tune hue and lightness, or paste a hex. The recommended
-variant updates live, same pattern as [Cash App's logo tool](https://design.cash.app/logo).
+The logo should always be used consistently and without modification.
 
-<LogoShowcase />
+<LogoSystemShowcase />
 
-## Choosing a lockup
+Download approved logo files: [noon Business Logo.zip](/brand-guidelines/noon_Business_Logo.zip).
 
-| Scenario | Lockup |
+## Logo Versions
+
+### Primary Logo
+
+Preferred for most applications. Use when horizontal space is available.
+
+<GuidelineAssetGrid items={[
+  { title: "Primary Logo", description: "Preferred logo version for most applications.", src: "/brand-guidelines/image.png" },
+]} />
+
+Use the Primary logo for:
+
+- Website headers
+- Landing pages
+- Presentations
+- Email signatures
+- Packaging
+- Trucks
+
+<GuidelineAssetGrid items={[
+  { title: "Landing Page", description: "Primary logo in a web hero context.", src: "/brand-guidelines/SCR-20260610-odkm.png", tone: "cover" },
+  { title: "Partners Platform / Sellerlab", description: "Primary logo in product navigation.", src: "/brand-guidelines/My_Account_-_Order_Details.png", tone: "cover" },
+  { title: "Email", description: "Primary logo in business communication.", src: "/brand-guidelines/image%201.png", tone: "cover" },
+  { title: "Packaging", description: "Primary logo on a physical brand surface.", src: "/brand-guidelines/c4e51244-f157-466d-b05d-9f5e73ac934d.png", tone: "cover" },
+  { title: "Truck", description: "Primary logo on a large logistics surface.", src: "/brand-guidelines/image%202.png", tone: "cover" },
+]} />
+
+### Compact Logo
+
+Secondary logo used when space is limited or when a more balanced square format
+is required.
+
+<GuidelineAssetGrid items={[
+  { title: "Compact Logo", description: "Secondary logo for tighter or square placements.", src: "/brand-guidelines/image%203.png" },
+]} />
+
+Use the Compact logo for:
+
+- App icons
+- Social media profiles
+- Small placements
+- Mobile-first layouts
+
+<GuidelineAssetGrid items={[
+  { title: "App Icons", description: "Compact logo in app icon contexts.", src: "/brand-guidelines/image%204.png", tone: "cover" },
+  { title: "Instagram", description: "Compact logo in a social profile context.", src: "/brand-guidelines/image%205.png", tone: "cover" },
+  { title: "Twitter", description: "Compact logo in a social profile context.", src: "/brand-guidelines/image%206.png", tone: "cover" },
+]} />
+
+## Choosing the Right Version
+
+| Scenario | Version |
 | --- | --- |
-| Website header, landing hero, Seller Lab | Primary |
-| App icon, favicon, social avatar | Compact |
-| Arabic marketing (RTL) | Arabic primary or compact per locale kit |
+| Website Header | Primary |
+| Landing Page Hero | Primary |
+| Packaging | Primary |
+| Mobile App Icon | Compact |
+| Social Profile | Compact |
+| Small Spaces | Compact |
+| Arabic Marketing Materials | Arabic Primary |
+| Arabic Mobile Experiences | Arabic Compact |
 
-## Incorrect usage
+## Color Variations
 
-Browse common mistakes. Arrow keys work when the gallery is focused.
+### Full Color
 
-<LogoMisuseGallery />
+The preferred logo version. The preferred expression of the Noon Business brand
+is the full-color logo on the Noon Business Blue background. Use it whenever
+practical.
+
+<GuidelineAssetGrid items={[
+  { title: "Full Color on Blue", description: "Preferred brand expression.", src: "/brand-guidelines/image%207.png" },
+  { title: "Full Color on Light", description: "Use when the logo remains clear and unmodified.", src: "/brand-guidelines/image%208.png" },
+]} layout="stack" />
+
+### Monochrome
+
+Use monochrome only when color reproduction is limited or a single-color
+application is required.
+
+<GuidelineAssetGrid items={[
+  { title: "Monochrome Dark", description: "Single-color dark logo application.", src: "/brand-guidelines/image%209.png" },
+  { title: "Monochrome Light", description: "Single-color light logo application.", src: "/brand-guidelines/image%2010.png" },
+]} layout="stack" />
 
 ## Rules
 
-- Tile color is always `#0928FF`, it does not adapt to theme
-- Preferred expression: full-color logo on brand or hero blue
-- Monochrome only when color reproduction is limited
-- Clear space equals the height of the "b" on all sides
+### Clear Space
+
+Keep clear space around the logo equal to the height of the brand mark.
+
+### Minimum Size
+
+Primary logo should never appear below `96px` wide in digital surfaces. Use the
+Compact logo when space is limited.
+
+### Approved Backgrounds
+
+Use the logo on white, brand blue, background blue, the signature gradient or
+quiet photography with enough contrast.
+
+### Incorrect Usage
+
+Do not stretch, recolor, rotate, add effects, place on noisy images or rebuild
+the lockup from typed text.
+
+<LogoMisuseGallery />
 
 ## Engineering reference
 
 ```tsx
-import { LogoMark, Wordmark } from "@/components/brand/logo";
+import { BrandLogo } from "@/components/brand/logo";
 
-<LogoMark size={26} />
-<Wordmark />
+<BrandLogo variant="primary" />
+<BrandLogo variant="compact" />
 ```
 
-Static exports: [brand assets](/resources/brand-assets).
+Static exports: [noon Business Logo.zip](/brand-guidelines/noon_Business_Logo.zip).
 
 ## Related
 
 <RelatedResources links={[
   { title: "Brand identity", href: "/foundations/brand-identity", description: "B2B architecture and placements" },
-  { title: "Color", href: "/foundations/color", description: "The blues and yellow the marks use" },
+  { title: "Colors", href: "/foundations/colors", description: "The blues and yellow the marks use" },
   { title: "Brand assets", href: "/resources/brand-assets", description: "Download logo packages" },
 ]} />

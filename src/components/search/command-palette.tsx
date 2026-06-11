@@ -169,7 +169,7 @@ export function CommandPalette({ index }: { index: SearchItem[] }) {
                       </span>
                     )}
                   </div>
-                  {item.status && (
+                  {item.status && item.status !== "done" && (
                     <StatusBadge status={item.status} compact className="shrink-0 text-[10px]" />
                   )}
                 </Command.Item>

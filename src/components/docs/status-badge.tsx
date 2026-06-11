@@ -5,13 +5,15 @@ import { cn } from "@/lib/utils";
 export const STATUS_LABEL: Record<DocStatus, string> = {
   done: "Done",
   "work-in-progress": "Work in progress",
-  planned: "Planned",
+  planned: "Coming soon",
+  draft: "Draft",
 };
 
 export const STATUS_VARIANT: Record<DocStatus, BadgeVariant> = {
   done: "success",
   "work-in-progress": "warning",
   planned: "neutral",
+  draft: "neutral",
 };
 
 export function StatusDot({ status }: { status: DocStatus }) {
@@ -23,6 +25,7 @@ export function StatusDot({ status }: { status: DocStatus }) {
         status === "done" && "bg-success",
         status === "work-in-progress" && "bg-warning",
         status === "planned" && "bg-ink-faint",
+        status === "draft" && "bg-ink-faint",
       )}
     />
   );
@@ -37,11 +40,15 @@ export function StatusBadge({
   compact?: boolean;
   className?: string;
 }) {
+  const label = compact && status === "planned"
+    ? "Soon"
+    : compact
+      ? STATUS_LABEL[status].replace("Work in progress", "WIP")
+      : STATUS_LABEL[status];
+
   return (
     <Badge variant={STATUS_VARIANT[status]} dot className={className}>
-      {compact
-        ? STATUS_LABEL[status].replace("Work in progress", "WIP")
-        : STATUS_LABEL[status]}
+      {label}
     </Badge>
   );
 }

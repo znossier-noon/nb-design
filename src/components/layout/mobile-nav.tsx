@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navigation } from "@/lib/navigation";
 import type { DocStatus } from "@/lib/content";
-import { StatusDot, STATUS_LABEL } from "@/components/docs/status-badge";
+import { StatusBadge, StatusDot, STATUS_LABEL } from "@/components/docs/status-badge";
 import { cn } from "@/lib/utils";
 
 export function MobileNav({
@@ -76,7 +76,9 @@ export function MobileNav({
                         >
                           {section.title}
                         </Link>
-                        {sectionStatus && <StatusDot status={sectionStatus} />}
+                        {sectionStatus && sectionStatus !== "done" && (
+                          <StatusDot status={sectionStatus} />
+                        )}
                       </div>
                       <ul className="mt-3 flex flex-col border-l border-border">
                         {section.groups
@@ -100,7 +102,11 @@ export function MobileNav({
                                   )}
                                 >
                                   <span>{item.title}</span>
-                                  {status && <StatusDot status={status} />}
+                                  {status === "planned" ? (
+                                    <StatusBadge status={status} compact className="text-[10px]" />
+                                  ) : status && status !== "done" ? (
+                                    <StatusDot status={status} />
+                                  ) : null}
                                 </Link>
                               </li>
                             );

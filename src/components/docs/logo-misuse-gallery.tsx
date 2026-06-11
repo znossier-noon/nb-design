@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { LogoMark } from "@/components/brand/logo";
+import { BrandLogo } from "@/components/brand/logo";
 import {
   ACCENT_YELLOW,
   BRAND_BLACK,
@@ -11,92 +11,73 @@ import {
 } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
-const B_PATH =
-  "M17 9v12.3a10.5 10.5 0 1 1-3.4 7.7V9h3.4Zm7.5 12.4a7.4 7.4 0 1 0 0 14.8 7.4 7.4 0 0 0 0-14.8Z";
-const SLASH_PATH = "M13.6 30.6 22 27l-5 9.8a10.6 10.6 0 0 1-3.4-6.2Z";
-
-function MisuseMark({
-  tile = BRAND_BLUE,
-  slash = ACCENT_YELLOW,
-  glyph = "#fff",
-  scaleX = 1,
-  rotate = 0,
-  showSlash = true,
-  outline = false,
-  shadow = false,
-  size = 56,
-}: {
-  tile?: string;
-  slash?: string;
-  glyph?: string;
-  scaleX?: number;
-  rotate?: number;
-  showSlash?: boolean;
-  outline?: boolean;
-  shadow?: boolean;
-  size?: number;
-}) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      aria-hidden
-      style={{
-        transform: `scaleX(${scaleX}) rotate(${rotate}deg)`,
-        filter: shadow ? "drop-shadow(0 6px 12px rgba(0,0,0,0.35))" : undefined,
-      }}
-    >
-      <rect
-        width="48"
-        height="48"
-        rx="10"
-        fill={tile}
-        stroke={outline ? "#fff" : undefined}
-        strokeWidth={outline ? 3 : undefined}
-      />
-      <path d={B_PATH} fill={glyph} />
-      {showSlash && <path d={SLASH_PATH} fill={slash} />}
-    </svg>
-  );
-}
-
 const MISUSES = [
   {
     id: "stretch",
     label: "Don't stretch",
-    detail: "Keep the 1:1 tile. Never scale the lockup unevenly.",
+    detail: "Keep the approved artwork proportions. Never scale the logo unevenly.",
     surface: "bg-white",
-    render: <MisuseMark scaleX={1.55} />,
+    render: (
+      <BrandLogo
+        variant="primary"
+        surface="light"
+        className="h-16"
+        style={{ transform: "scaleX(1.35)" }}
+      />
+    ),
   },
   {
     id: "rotate",
     label: "Don't rotate",
-    detail: "The lettermark is always upright, never tilted for effect.",
+    detail: "The approved logo is always upright, never tilted for effect.",
     surface: "bg-white",
-    render: <MisuseMark rotate={18} />,
+    render: (
+      <BrandLogo
+        variant="primary"
+        surface="light"
+        className="h-16"
+        style={{ transform: "rotate(14deg)" }}
+      />
+    ),
   },
   {
-    id: "slash",
-    label: "Don't drop the slash",
-    detail: "The yellow slash is part of the noon inheritance, not optional.",
+    id: "crop",
+    label: "Don't crop",
+    detail: "Use the complete approved logo file. Never crop the wordmark or spacing.",
     surface: "bg-white",
-    render: <MisuseMark showSlash={false} />,
+    render: (
+      <div className="w-34 overflow-hidden">
+        <BrandLogo variant="primary" surface="light" className="h-16" />
+      </div>
+    ),
   },
   {
     id: "recolor",
-    label: "Don't recolor the tile",
-    detail: "Tile stays #0928FF. Purple, green or gradient fills are off-brand.",
+    label: "Don't recolor",
+    detail: "Do not recolor, tint or filter the approved logo artwork.",
     surface: "bg-white",
-    render: <MisuseMark tile="#7C3AED" slash="#FDE047" />,
+    render: (
+      <BrandLogo
+        variant="primary"
+        surface="light"
+        className="h-16"
+        style={{ filter: "hue-rotate(110deg) saturate(1.4)" }}
+      />
+    ),
   },
   {
     id: "effects",
     label: "Don't add effects",
-    detail: "No outlines, glows or heavy shadows on the mark.",
+    detail: "No outlines, glows or heavy shadows on the logo.",
     surface: "bg-white",
-    render: <MisuseMark outline shadow />,
+    render: (
+      <BrandLogo
+        variant="primary"
+        surface="light"
+        className="h-16"
+        style={{ filter: "drop-shadow(0 12px 16px rgba(0,0,0,0.45))" }}
+      />
+    ),
   },
   {
     id: "busy",
@@ -114,28 +95,20 @@ const MISUSES = [
           }}
         />
         <div className="relative">
-          <LogoMark size={56} />
+          <BrandLogo variant="primary" surface="dark" className="h-16" />
         </div>
       </div>
     ),
   },
   {
     id: "gradient-fill",
-    label: "Don't gradient the tile",
-    detail: "Gradients belong on hero surfaces, not inside the lettermark.",
+    label: "Don't add treatments",
+    detail: "Do not place the logo inside added graphic treatments or custom containers.",
     surface: "bg-white",
     render: (
-      <svg width={56} height={56} viewBox="0 0 48 48" fill="none" aria-hidden>
-        <defs>
-          <linearGradient id="misuse-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#0928FF" />
-            <stop offset="100%" stopColor="#F3E008" />
-          </linearGradient>
-        </defs>
-        <rect width="48" height="48" rx="10" fill="url(#misuse-grad)" />
-        <path d={B_PATH} fill="#fff" />
-        <path d={SLASH_PATH} fill={ACCENT_YELLOW} />
-      </svg>
+      <div className="rounded-xl p-5" style={{ background: BRAND_GRADIENT }}>
+        <BrandLogo variant="primary" surface="dark" className="h-14" />
+      </div>
     ),
   },
   {
@@ -143,7 +116,7 @@ const MISUSES = [
     label: "Don't use wrong variant",
     detail: "Full-color on mid-gray fails legibility. Pick white or ink mono.",
     surface: "bg-[#B8B8C0]",
-    render: <LogoMark size={56} />,
+    render: <BrandLogo variant="primary" surface="light" className="h-16" />,
   },
 ] as const;
 

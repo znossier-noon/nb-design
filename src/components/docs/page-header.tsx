@@ -8,7 +8,9 @@ export function DocPageHeader({ frontmatter }: { frontmatter: DocFrontmatter }) 
     <header className="border-b border-border pb-8">
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-headline text-ink">{frontmatter.title}</h1>
-        {frontmatter.status && <StatusBadge status={frontmatter.status} />}
+        {frontmatter.status && frontmatter.status !== "done" && (
+          <StatusBadge status={frontmatter.status} />
+        )}
         {frontmatter.version && (
           <Badge variant="neutral">
             <span className="font-mono">v{frontmatter.version}</span>

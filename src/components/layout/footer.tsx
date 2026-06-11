@@ -11,9 +11,6 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2.5">
               <LogoMark size={22} />
-              <span className="text-sm font-semibold text-ink">
-                noon <span className="text-brand">business</span> design
-              </span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-ink-muted">
               {PLATFORM_TAGLINE}

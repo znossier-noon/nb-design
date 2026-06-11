@@ -1,104 +1,96 @@
 ---
 title: Typography
-description: "A single-family type system built on Figtree: editorial at the top, workmanlike in the interface, consistent everywhere."
+description: "Noon Business typography tokens from the Branding Figma source."
 status: done
 version: "1.0.0"
-updated: 2026-05-21
-figma: https://www.figma.com/design/NWn3esVM9TYjso4TCakkGk/Branding
+updated: 2026-06-11
+figma: https://www.figma.com/design/NWn3esVM9TYjso4TCakkGk/Branding?node-id=927-12288
 ---
 
-One family, **Figtree**, everywhere. Hierarchy comes from size, weight and
-spacing, never from switching typefaces.
+## Typeface
 
-## Try it
+The Branding Figma source defines the primary type family as **noontree**.
+Use it for Noon Business brand, product and documentation typography.
 
-<TypeTester />
+The web implementation prefers `noontree` when available and falls back to the
+current loaded sans font until the production noontree font files are available
+in the repo.
 
-## Type scale
+Use **JetBrains Mono** only for code, tokens, order IDs, financial figures and
+tabular data.
 
-Two registers: **editorial** (Display XL through Headline) is fluid via
-`clamp()`; **interface** (Title and below) uses fixed sizes for dense product UI.
+## Figma Token Scale
 
 <TypeScale />
 
-## Typefaces
+The scale is sourced from Figma node `927:12288` and maps to these families:
 
-| Family | Role | Weights |
-| --- | --- | --- |
-| Figtree | Everything: display, headings, UI, body | 400, 500, 600 |
-| JetBrains Mono | Code, tokens, tabular identifiers | 400, 500 |
+<FoundationCards items={[
+  { title: "Title", description: "Title1, Title2 and Title3 for hero and high-emphasis product moments." },
+  { title: "Headings", description: "H1 through H4 for page hierarchy, sections, panels and compact headings." },
+  { title: "Labels", description: "Label1 through Label5 for controls, tabs, chips, badges and dense UI labels." },
+  { title: "Body", description: "Body1 through Body3 for primary copy, helper text, tables and captions." },
+  { title: "Tiny", description: "Tiny and Tiny Extended for microcopy, counters and overlines." },
+]} />
 
-<Callout tone="info" title="Loading">
-  Both families are self-hosted via <code>next/font</code> with
-  <code>display: swap</code> and Latin subsetting. Never load fonts from
-  third-party CDNs in product code.
-</Callout>
+## Headings
 
-## Usage rules
+Headings use negative tracking from the Figma tokens. Use one dominant page title,
+then step down through H1, H2, H3 and H4 without skipping hierarchy.
 
-### Hierarchy
+<FoundationCards items={[
+  { title: "Title1", description: "44 / 48, -0.8px tracking. Strongest page and brand moment." },
+  { title: "Title2", description: "40 / 42, -0.64px tracking. Large section and campaign titles." },
+  { title: "Title3", description: "32 / 34, -0.64px tracking. Feature headers and prominent modules." },
+  { title: "H1-H4", description: "28 down to 20px. Page, section, panel and compact heading levels." },
+]} />
 
-A screen should read as a clear outline when you squint. If two adjacent text
-blocks compete, demote one.
+## Labels
 
-<DoDont>
-  <Do>
-    Use one Headline per page, and step down through Title and Body without
-    skipping more than one level.
-  </Do>
-  <Dont>
-    Create hierarchy with color or italics, weight and size are the only
-    hierarchy tools in this system.
-  </Dont>
-</DoDont>
+Labels are compact, high-utility styles for product surfaces. Use them for
+buttons, tabs, chips, metadata labels and status markers. Keep labels short and
+action-oriented.
 
-### Line length and rhythm
+## Body
 
-- Large text tracks tight (Display XL −3.5%), small text needs room (Caption +1%), baked into the scale, never overridden per-instance
-- Body text: 45–75 characters per line, line height 1.75 for prose, 1.5 for dense UI
-- Never justify text. Left-aligned, ragged-right, always
+Body styles use zero tracking and tighter line heights than long-form editorial
+prose. Use Body1 for primary product copy, Body2 for supporting text and table
+content, and Body3 for captions or legal support.
 
-### Numbers and data
+## Tiny
 
-Any column of numbers, order IDs, amounts, timestamps, is JetBrains Mono
-with tabular figures.
+Tiny is reserved for microcopy, counters and dense metadata. Tiny Extended uses
+`1px` tracking and uppercase for overlines and section markers.
 
-<DoDont>
-  <Do>
-    Right-align numeric table columns and set them in mono with tabular
-    figures.
-  </Do>
-  <Dont>
-    Mix mono identifiers into running prose, only data surfaces get mono.
-  </Dont>
-</DoDont>
+## Arabic Typography
 
-## Engineering reference
+Arabic typography should match the same hierarchy and spacing logic as English:
+clear titles, practical body copy and generous line height for readability. Use
+Arabic-first layouts for Arabic pages instead of forcing translated text into
+English compositions.
 
-The scale is defined as Tailwind theme tokens, so styles stay consistent and
-purgeable.
+## Examples
+
+<TypeSpecimen />
+
+<TypeTester />
+
+## Loading
+
+The Figma source family is `noontree`. Production should self-host approved
+noontree files when they are available. Do not load brand fonts from third-party
+CDNs in product code.
 
 ```css
-@theme inline {
-  --text-display-xl: clamp(3rem, 7.5vw, 5.5rem);
-  --text-display-xl--line-height: 1.02;
-  --text-display-xl--letter-spacing: -0.035em;
-
-  --text-headline: clamp(1.75rem, 3.2vw, 2.5rem);
-  --text-title: 1.375rem;
+:root {
+  --font-sans: "noontree", var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
 }
 ```
 
 ```tsx
-<h1 className="text-headline text-ink">Page title</h1>
-<p className="text-body-lg text-ink-secondary">Lede paragraph…</p>
+<h1 className="text-[44px] leading-[48px] tracking-[-0.8px] font-extrabold">
+  Page title
+</h1>
+<p className="text-[16px] leading-[20px]">Body1 copy...</p>
 <span className="font-mono text-[13px]">NB-20581</span>
 ```
-
-## Related
-
-<RelatedResources links={[
-  { title: "Color", href: "/foundations/color", description: "Ink steps that pair with each text style" },
-  { title: "Content guidelines", href: "/foundations/content-guidelines", description: "What to write in all this type" },
-  { title: "Brand identity", href: "/foundations/brand-identity", description: "Why Figtree is the brand voice" },
-]} />

@@ -1,61 +1,25 @@
 ---
 title: Iconography
-description: A single stroke-based icon style (1.5px lines on a 16px grid) that stays legible from dense tables to marketing pages.
-status: done
+description: "Draft direction for icon style, stroke weight, grid and usage rules."
+status: draft
 version: "1.0.0"
-updated: 2026-04-30
+updated: 2026-06-11
 ---
 
-Icons in Noon Business products are functional, not decorative. They compress
-meaning into small spaces, and they only work if every icon follows the same
-optical rules.
+<DraftNotice title="Iconography foundation" />
 
-## The library
+## Icon Style
 
-<IconGallery />
+Future guidance for functional product icons and brand icon moments.
 
-## Style
+## Stroke Weight
 
-- **Stroke-based**: 1.5px stroke at 16px, scaling proportionally
-- **Grid**: drawn on a 16×16 grid with a 1px safety margin
-- **Corners**: rounded caps and joins, matching Figtree's geometry
-- **Color**: `currentColor` always, icons inherit text color and theme automatically
-- **Fills** are reserved for selected/active states of the same glyph
+Future rules for line weight, caps, joins and filled states.
 
-## Usage rules
+## Grid
 
-<DoDont>
-  <Do>
-    Pair icons with labels. Icons accelerate recognition of a labeled action,
-    they rarely replace the label.
-  </Do>
-  <Dont>
-    Ship icon-only controls for anything domain-specific. A funnel icon means
-    nothing until someone teaches you it means "filter".
-  </Dont>
-</DoDont>
+Future grid and optical alignment rules.
 
-- Icon-only buttons are allowed for universal actions (close, search, settings) and always carry `aria-label`
-- Never mix stroke weights or borrow icons from other libraries mid-product
-- Directional icons (arrows, chevrons) flip automatically in RTL layouts
+## Usage Rules
 
-## Engineering reference
-
-Icons ship as React components rendering inline SVG with `currentColor`:
-
-```tsx
-<SearchIcon className="size-4" aria-hidden />
-<button aria-label="Search documentation">
-  <SearchIcon className="size-4" />
-</button>
-```
-
-Decorative icons next to visible labels are always `aria-hidden` so screen
-readers hear the label once.
-
-## Related
-
-<RelatedResources links={[
-  { title: "Logo", href: "/foundations/logo", description: "The one mark that isn't an icon" },
-  { title: "Brand assets", href: "/resources/brand-assets", description: "Download the icon library" },
-]} />
+Future guidance for labels, accessibility, RTL and icon-only controls.

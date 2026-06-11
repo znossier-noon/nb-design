@@ -9,7 +9,7 @@ export const BRAND_BG = "#0036BD";
 export const BRAND_BLACK = "#09090B";
 export const ACCENT_YELLOW = "#F3E008";
 export const BRAND_GRADIENT =
-  "linear-gradient(165deg, #0928FF 0%, #0036BD 55%, #061DBF 100%)";
+  "linear-gradient(180deg, #0036BD 0%, #00278A 100%)";
 
 export type LogoVariant = "full" | "white" | "ink";
 

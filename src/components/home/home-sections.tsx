@@ -38,7 +38,7 @@ function SectionHeader({
       <div>
         <div className="flex flex-wrap items-center gap-3">
           <h2 className="text-display text-ink">{title}</h2>
-          <StatusBadge status={status} />
+          {status !== "done" && <StatusBadge status={status} />}
         </div>
         <p className="mt-4 max-w-xl text-body-lg text-ink-secondary">{description}</p>
       </div>
@@ -108,7 +108,7 @@ export function HomeSections() {
               >
                 <span className="text-[15px] font-semibold text-ink">{item.title}</span>
                 <span className="flex items-center gap-3">
-                  {pageStatuses[item.href] && (
+                  {pageStatuses[item.href] && pageStatuses[item.href] !== "done" && (
                     <StatusBadge
                       status={pageStatuses[item.href]}
                       compact
