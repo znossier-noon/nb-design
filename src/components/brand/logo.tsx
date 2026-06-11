@@ -1,9 +1,90 @@
-import { ACCENT_YELLOW, BRAND_BLUE } from "@/lib/brand";
+import Image from "next/image";
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
-/**
- * The noon business "b" lettermark, blue tile, white b, yellow slash.
- */
+type BrandLogoVariant = "primary" | "compact" | "mono-dark" | "mono-light";
+
+const logoSources: Record<BrandLogoVariant, { dark: string; light: string }> = {
+  primary: {
+    dark: "/brand-guidelines/logos/en/Primary%20Dark.svg",
+    light: "/brand-guidelines/logos/en/Primary%20Light.svg",
+  },
+  compact: {
+    dark: "/brand-guidelines/logos/en/Compact%20Dark.svg",
+    light: "/brand-guidelines/logos/en/Compact%20Light.svg",
+  },
+  "mono-dark": {
+    dark: "/brand-guidelines/logos/en/Primary%20Monochrome%20Dark.svg",
+    light: "/brand-guidelines/logos/en/Primary%20Monochrome%20Dark.svg",
+  },
+  "mono-light": {
+    dark: "/brand-guidelines/logos/en/Primary%20Monochrome%20Light.svg",
+    light: "/brand-guidelines/logos/en/Primary%20Monochrome%20Light.svg",
+  },
+};
+
+const logoSize = {
+  primary: { width: 340, height: 126 },
+  compact: { width: 280, height: 137 },
+  "mono-dark": { width: 340, height: 126 },
+  "mono-light": { width: 340, height: 126 },
+} satisfies Record<BrandLogoVariant, { width: number; height: number }>;
+
+export function BrandLogo({
+  variant = "primary",
+  surface = "theme",
+  className,
+  style,
+  priority = false,
+}: {
+  variant?: BrandLogoVariant;
+  surface?: "theme" | "light" | "dark";
+  className?: string;
+  style?: CSSProperties;
+  priority?: boolean;
+}) {
+  const sources = logoSources[variant];
+  const size = logoSize[variant];
+  const singleSource =
+    surface === "light" ? sources.dark : surface === "dark" ? sources.light : null;
+
+  if (singleSource) {
+    return (
+      <span className={cn("relative inline-block", className)} style={style}>
+        <Image
+          src={singleSource}
+          alt="Noon Business"
+          width={size.width}
+          height={size.height}
+          priority={priority}
+          className="h-full w-auto object-contain"
+        />
+      </span>
+    );
+  }
+
+  return (
+    <span className={cn("relative inline-block", className)} style={style}>
+      <Image
+        src={sources.dark}
+        alt="Noon Business"
+        width={size.width}
+        height={size.height}
+        priority={priority}
+        className="h-full w-auto object-contain dark:hidden"
+      />
+      <Image
+        src={sources.light}
+        alt="Noon Business"
+        width={size.width}
+        height={size.height}
+        priority={priority}
+        className="hidden h-full w-auto object-contain dark:block"
+      />
+    </span>
+  );
+}
+
 export function LogoMark({
   className,
   size = 28,
@@ -11,36 +92,9 @@ export function LogoMark({
   className?: string;
   size?: number;
 }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      aria-hidden
-      className={cn("shrink-0", className)}
-    >
-      <rect width="48" height="48" rx="10" fill={BRAND_BLUE} />
-      <path
-        d="M17 9v12.3a10.5 10.5 0 1 1-3.4 7.7V9h3.4Zm7.5 12.4a7.4 7.4 0 1 0 0 14.8 7.4 7.4 0 0 0 0-14.8Z"
-        fill="#fff"
-      />
-      <path d="M13.6 30.6 22 27l-5 9.8a10.6 10.6 0 0 1-3.4-6.2Z" fill={ACCENT_YELLOW} />
-    </svg>
-  );
+  return <BrandLogo variant="compact" className={cn("shrink-0", className)} style={{ height: size }} />;
 }
 
 export function Wordmark({ className }: { className?: string }) {
-  return (
-    <span
-      className={cn(
-        "flex items-baseline gap-1 font-semibold tracking-[-0.02em]",
-        className,
-      )}
-    >
-      <span className="text-ink">noon</span>
-      <span className="text-brand">business</span>
-      <span className="ml-1 hidden text-ink-muted font-medium sm:inline">design</span>
-    </span>
-  );
+  return <BrandLogo variant="primary" className={cn("h-8", className)} />;
 }

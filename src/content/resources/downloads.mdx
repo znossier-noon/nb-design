@@ -3,23 +3,29 @@ title: Downloads
 description: Fonts, color palettes, presentation kits and everything else that installs locally.
 status: "work-in-progress"
 version: "1.0.0"
-updated: 2026-05-30
+updated: 2026-06-11
 ---
+
+## Logo package
+
+Download the approved Noon Business logo package:
+[noon Business Logo.zip](/brand-guidelines/noon_Business_Logo.zip).
 
 ## Fonts
 
 | Family | License | Formats |
 | --- | --- | --- |
-| Figtree | Open (OFL) | Variable TTF, static weights 400/500/600, woff2 |
+| noontree | Brand font | Pending approved production files |
+| Figtree | Web fallback | Loaded until noontree files are added |
 | JetBrains Mono | Open (OFL) | Variable TTF, weights 400/500, woff2 |
 
-Product surfaces load fonts via `next/font`, these downloads are for design
-tools and documents. Install the static weights in Figma to match production
-rendering.
+Figma defines `noontree` as the primary family. Product surfaces should use the
+approved self-hosted noontree files once available; the site currently keeps a
+web fallback so pages remain stable.
 
 ## Color palettes
 
-The [token palette](/foundations/color) packaged for every tool:
+The [token palette](/foundations/colors) packaged for every tool:
 
 - **Figma**, included as variables in NB Foundations (preferred)
 - **Swatch files**, `.ase` (Adobe), `.clr` (macOS), `.gpl` (GIMP/Inkscape)
@@ -49,5 +55,5 @@ Ships CSS custom properties, a Tailwind preset and the raw JSON. Setup guide:
 <RelatedResources links={[
   { title: "Brand assets", href: "/resources/brand-assets", description: "Logos, icons and imagery" },
   { title: "Typography", href: "/foundations/typography", description: "How the fonts are used" },
-  { title: "Color", href: "/foundations/color", description: "The palette being downloaded" },
+  { title: "Colors", href: "/foundations/colors", description: "The palette being downloaded" },
 ]} />

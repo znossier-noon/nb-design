@@ -119,8 +119,8 @@ export function TypeTester() {
       </div>
 
       <div className="border-t border-border bg-surface/50 px-4 py-2 text-[11px] text-ink-faint">
-        Click the specimen and type your own text. Set in Figtree, the only
-        family in the system.
+        Click the specimen and type your own text. Set in the primary noontree
+        stack, with the current web fallback when noontree is unavailable.
       </div>
     </div>
   );

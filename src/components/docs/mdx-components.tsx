@@ -17,6 +17,20 @@ import { VoiceFlip } from "@/components/docs/voice-flip";
 import { PrinciplesExplorer } from "@/components/docs/principles-explorer";
 import { LogoMisuseGallery } from "@/components/docs/logo-misuse-gallery";
 import { RelatedResources } from "@/components/docs/related-resources";
+import {
+  ApplicationGallery,
+  ColorSpecGrid,
+  ComingSoonNotice,
+  DraftNotice,
+  FoundationCards,
+  GuidelineAssetGrid,
+  LogoSystemShowcase,
+  PortalIntro,
+  ProductUiShowcase,
+  ResourceCards,
+  SignatureGradientShowcase,
+  TypeSpecimen,
+} from "@/components/docs/brand-foundation-blocks";
 import { Badge } from "@/components/ui/badge";
 import { Kbd } from "@/components/ui/kbd";
 import type { MDXComponents } from "mdx/types";
@@ -83,6 +97,18 @@ export const mdxComponents: MDXComponents = {
   PrinciplesExplorer,
   LogoMisuseGallery,
   RelatedResources,
+  ApplicationGallery,
+  ColorSpecGrid,
+  ComingSoonNotice,
+  DraftNotice,
+  FoundationCards,
+  GuidelineAssetGrid,
+  LogoSystemShowcase,
+  PortalIntro,
+  ProductUiShowcase,
+  ResourceCards,
+  SignatureGradientShowcase,
+  TypeSpecimen,
   Badge,
   Kbd,
 };

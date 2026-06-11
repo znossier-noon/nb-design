@@ -1,6 +1,7 @@
 export type NavLeaf = {
   title: string;
   href: string;
+  visible?: boolean;
 };
 
 export type NavGroup = {
@@ -13,29 +14,48 @@ export type NavSection = {
   href: string;
   description: string;
   groups: NavGroup[];
+  visible?: boolean;
 };
 
-export const navigation: NavSection[] = [
+const rawNavigation: NavSection[] = [
   {
     title: "Foundations",
     href: "/foundations",
-    description: "Principles, tokens and brand rules",
+    description: "Brand and product design foundations",
     groups: [
       {
-        title: "Foundations",
+        title: "",
         items: [
-          { title: "Overview", href: "/foundations" },
-          { title: "Design principles", href: "/foundations/principles" },
-          { title: "Brand identity", href: "/foundations/brand-identity" },
+          { title: "Introduction", href: "/foundations" },
+        ],
+      },
+      {
+        title: "Core identity",
+        items: [
           { title: "Logo", href: "/foundations/logo" },
-          { title: "Color", href: "/foundations/color" },
+          { title: "Colors", href: "/foundations/colors" },
           { title: "Typography", href: "/foundations/typography" },
-          { title: "Iconography", href: "/foundations/iconography" },
-          { title: "Motion", href: "/foundations/motion" },
-          {
-            title: "Content guidelines",
-            href: "/foundations/content-guidelines",
-          },
+          { title: "Visual Language", href: "/foundations/visual-language" },
+        ],
+      },
+      {
+        title: "Experience",
+        items: [
+          { title: "Product UI", href: "/foundations/product-ui" },
+          { title: "Packaging", href: "/foundations/packaging" },
+          { title: "Marketing Assets", href: "/foundations/marketing-assets" },
+          { title: "Brand Applications", href: "/foundations/brand-applications" },
+          { title: "Resources", href: "/foundations/resources" },
+        ],
+      },
+      {
+        title: "Future sections",
+        items: [
+          { title: "Illustration", href: "/foundations/illustration", visible: false },
+          { title: "Photography", href: "/foundations/photography", visible: false },
+          { title: "Motion", href: "/foundations/motion", visible: false },
+          { title: "Iconography", href: "/foundations/iconography", visible: false },
+          { title: "Tone of Voice", href: "/foundations/tone-of-voice", visible: false },
         ],
       },
     ],
@@ -59,6 +79,22 @@ export const navigation: NavSection[] = [
     ],
   },
 ];
+
+function isVisible(item: { visible?: boolean }) {
+  return item.visible !== false;
+}
+
+export const navigation: NavSection[] = rawNavigation
+  .filter(isVisible)
+  .map((section) => ({
+    ...section,
+    groups: section.groups
+      .map((group) => ({
+        ...group,
+        items: group.items.filter(isVisible),
+      }))
+      .filter((group) => group.items.length > 0),
+  }));
 
 export const headerNav = navigation.map((s) => ({
   title: s.title,

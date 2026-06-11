@@ -24,7 +24,7 @@ export function Sidebar({
         <div className="mb-6 px-3">
           <div className="flex flex-wrap items-center gap-2">
             <p className="text-sm font-semibold text-ink">{section.title}</p>
-            {sectionStatus && (
+            {sectionStatus && sectionStatus !== "done" && (
               <StatusBadge status={sectionStatus} compact className="text-[10px]" />
             )}
           </div>
@@ -33,12 +33,14 @@ export function Sidebar({
           </p>
         </div>
         <div className="flex flex-col gap-7">
-          {section.groups.map((group) => (
-            <div key={group.title}>
-              <h3 className="px-3 text-[11px] font-semibold tracking-[0.08em] text-ink-faint uppercase">
-                {group.title}
-              </h3>
-              <ul className="mt-2 flex flex-col gap-px">
+          {section.groups.map((group, index) => (
+            <div key={group.title || `${section.title}-${index}`}>
+              {group.title && (
+                <h3 className="px-3 text-[11px] font-semibold tracking-[0.08em] text-ink-faint uppercase">
+                  {group.title}
+                </h3>
+              )}
+              <ul className={cn("flex flex-col gap-px", group.title && "mt-2")}>
                 {group.items.map((item) => {
                   const active = pathname === item.href;
                   const status = pageStatuses[item.href];
@@ -60,9 +62,11 @@ export function Sidebar({
                         )}
                       >
                         <span>{item.title}</span>
-                        {status && item.title !== "Overview" && (
+                        {status === "planned" && item.title !== "Overview" ? (
+                          <StatusBadge status={status} compact className="text-[10px]" />
+                        ) : status && status !== "done" && item.title !== "Overview" ? (
                           <StatusDot status={status} />
-                        )}
+                        ) : null}
                       </Link>
                     </li>
                   );

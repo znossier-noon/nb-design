@@ -31,7 +31,7 @@
   --brand-bg: #0036bd;
   --brand-soft: #eef0ff;
   --brand-ink: #ffffff;
-  --brand-gradient: linear-gradient(165deg, #0928ff 0%, #0036bd 55%, #061dbf 100%);
+  --brand-gradient: linear-gradient(180deg, #0036bd 0%, #00278a 100%);
   --accent: #f3e008;
   --accent-ink: #09090b;
 
@@ -70,11 +70,11 @@
   --border: #24242b;
   --border-strong: #33333c;
 
-  --brand: #4d6bff;
-  --brand-strong: #2a4fd4;
+  --brand: #0928ff;
+  --brand-strong: #0036bd;
   --brand-bg: #0036bd;
   --brand-soft: #111b3a;
-  --brand-gradient: linear-gradient(165deg, #0928ff 0%, #0036bd 55%, #061dbf 100%);
+  --brand-gradient: linear-gradient(180deg, #0036bd 0%, #00278a 100%);
   --brand-ink: #ffffff;
   --accent: #f3e008;
   --accent-ink: #09090b;
@@ -125,7 +125,7 @@
   --color-ring: var(--ring);
 
   /* Fonts */
-  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "noontree", var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", monospace;
 
   /* Editorial type scale */

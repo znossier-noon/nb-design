@@ -5,7 +5,7 @@ import GithubSlugger from "github-slugger";
 
 const CONTENT_DIR = path.join(process.cwd(), "src/content");
 
-export type DocStatus = "done" | "work-in-progress" | "planned";
+export type DocStatus = "done" | "work-in-progress" | "planned" | "draft";
 
 export type DocFrontmatter = {
   title: string;
