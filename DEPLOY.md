@@ -31,7 +31,7 @@ Or manually:
 git init -b main
 git add .
 git commit -m "Initial commit: Noon Business Design platform"
-git remote add origin git@github.com:YOUR_ORG/nb-design.git
+git remote add origin git@github.com:znossier-noon/nb-design.git
 git push -u origin main
 ```
 
